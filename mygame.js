@@ -1,10 +1,15 @@
 var createGame = require('voxel-hello-world')
+var texturePath = require('programmerart-textures')('');
 var game = createGame({
     generate: function(x, y, z) {
       return y === 1 ? 1 : 0
     },
-    materials: [['grass', 'dirt', 'grass_dirt'], 'brick', 'dirt',
-'gold_ore', 'hardened_clay_stained_cyan', ],
+    materials: [
+        ['blocks/grass_top', 'blocks/dirt', 'blocks/grass_side'],
+        'blocks/stone',
+        'blocks/dirt'],
+    texturePath: texturePath,
+    materialFlatColor: false,
 })
 //game.createBlock([1, 2, 1], 3),
 
