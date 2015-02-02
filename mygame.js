@@ -5,13 +5,20 @@ var game = createGame({
       return y === 1 ? 1 : 0
     },
     materials: [
-        ['blocks/grass_top', 'blocks/dirt', 'blocks/grass_side'],
-        'blocks/stone',
-        'blocks/dirt'],
+        'blocks/snow.png',
+        'blocks/water_flow.png',
+        'blocks/water_still.png',
+        'blocks/reeds.png',
+        'blocks/quartz_block_chiseled.png',
+        'blocks/portal.png',
+        'blocks/obsidian.png',
+        'blocks/diamond_block.png',
+        'blocks/log_birch.png'
+    ],
     texturePath: texturePath,
     materialFlatColor: false,
 })
-//game.createBlock([1, 2, 1], 3),
+game.createBlock([2, 2, 2], 3),
 
 
 window.game = game
