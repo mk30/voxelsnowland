@@ -6,19 +6,52 @@ var game = createGame({
     },
     materials: [
         'blocks/snow.png',
-        'blocks/water_flow.png',
-        'blocks/water_still.png',
-        'blocks/reeds.png',
-        'blocks/quartz_block_chiseled.png',
         'blocks/portal.png',
-        'blocks/obsidian.png',
-        'blocks/diamond_block.png',
         'blocks/log_birch.png'
     ],
     texturePath: texturePath,
     materialFlatColor: false,
 })
-game.createBlock([2, 2, 2], 3),
+//game.createBlock([2, 2, 2], 3),
+/*
+var x = 2
+var y = 2
+var z = 2
+var count = 0
+
+var clearInterval = game.setInterval(function() {
+    if (count < 3){
+        game.setBlock([2, y, 2], 2) 
+        y++
+        count++
+    }
+    else {
+        game.setBlock([3, y, 2], 3)
+        game.setBlock([3, y, 3], 3)
+        game.setBlock([2, y, 3], 3)
+        y++
+        count++
+    }
+}, 2000)
+*/
+
+var count = 0
+game.setBlock([3, 3, 3], 3)
+var blocks = [[3, 3, 3]]
+
+var clearInterval = game.setInterval(function() {
+    var random = Math.floor(Math.random() *3) - 1
+    var prevblockx = blocks[count][0]
+    var prevblocky = blocks[count][1]
+    var prevblockz = blocks[count][2]
+    var nextblockx = prevblockx + Math.floor(Math.random() *3) - 1
+    var nextblocky = prevblocky + Math.floor(Math.random() *3) - 1
+    var nextblockz = prevblockz + Math.floor(Math.random() *3) - 1
+    blocks.push([nextblockx, nextblocky, nextblockz])
+    game.setBlock(blocks[count + 1], 2)
+    count++
+}, 2000)
+
 
 
 window.game = game
@@ -27,6 +60,8 @@ var snow = require('voxel-snow')({
   count: 2000,
   size: 10
 });
+
+
 
 var critterCreator = require('voxel-critter')(game)
 critterCreator('./snowman.png', function(err, critter) {
