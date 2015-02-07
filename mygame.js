@@ -44,11 +44,13 @@ var clearInterval = game.setInterval(function() {
     var dy = deck.pick({
         '-1' : 1,
         0 : 3,
-        1 : 6, 
+        1 : 4, 
     })
-    var prevblockx = blocks[count][0]
-    var prevblocky = blocks[count][1]
-    var prevblockz = blocks[count][2]
+    var n = blocks.length 
+    var ran = n - Math.floor(Math.random() * Math.min(n, 9)) - 1
+    var prevblockx = blocks[ran][0]
+    var prevblocky = blocks[ran][1]
+    var prevblockz = blocks[ran][2]
     var nextblockx = prevblockx + Math.floor(Math.random() *3) - 1
     var nextblocky = prevblocky + parseInt(dy)
     console.log(prevblocky)
@@ -56,7 +58,7 @@ var clearInterval = game.setInterval(function() {
     blocks.push([nextblockx, nextblocky, nextblockz])
     game.setBlock(blocks[count + 1], 2)
     count++
-}, 2000)
+}, 1000)
 
 
 
