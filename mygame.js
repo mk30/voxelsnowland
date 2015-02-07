@@ -39,25 +39,33 @@ var deck = require('deck')
 var count = 0
 game.setBlock([3, 3, 3], 3)
 var blocks = [[3, 3, 3]]
+var y = 2
 
 var clearInterval = game.setInterval(function() {
-    var dy = deck.pick({
-        '-1' : 1,
-        0 : 3,
-        1 : 4, 
-    })
-    var n = blocks.length 
-    var ran = n - Math.floor(Math.random() * Math.min(n, 9)) - 1
-    var prevblockx = blocks[ran][0]
-    var prevblocky = blocks[ran][1]
-    var prevblockz = blocks[ran][2]
-    var nextblockx = prevblockx + Math.floor(Math.random() *3) - 1
-    var nextblocky = prevblocky + parseInt(dy)
-    console.log(prevblocky)
-    var nextblockz = prevblockz + Math.floor(Math.random() *3) - 1
-    blocks.push([nextblockx, nextblocky, nextblockz])
-    game.setBlock(blocks[count + 1], 2)
-    count++
+    if (count < 3){
+        game.setBlock([3, y, 3], 3) 
+        y++
+        count++
+    }
+    else {
+        var dy = deck.pick({
+            '-1' : 1,
+            0 : 3,
+            1 : 4, 
+        })
+        var n = blocks.length 
+        var ran = n - Math.floor(Math.random() * Math.min(n, 9)) - 1
+        var prevblockx = blocks[ran][0]
+        var prevblocky = blocks[ran][1]
+        var prevblockz = blocks[ran][2]
+        var nextblockx = prevblockx + Math.floor(Math.random() *3) - 1
+        var nextblocky = prevblocky + parseInt(dy)
+        console.log(prevblocky)
+        var nextblockz = prevblockz + Math.floor(Math.random() *3) - 1
+        blocks.push([nextblockx, nextblocky, nextblockz])
+        game.setBlock(blocks[count + 1], 2)
+        count++
+    }
 }, 1000)
 
 
