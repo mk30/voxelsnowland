@@ -53,6 +53,13 @@ var clearInterval = game.setInterval(function() {
             0 : 3,
             1 : 4, 
         })
+        blocks.forEach(function(entry){
+            game.setBlock(entry, 0)
+
+        })
+        blocks.forEach(function(entry){
+            entry[1]++
+        })
         var n = blocks.length 
         var ran = n - Math.floor(Math.random() * Math.min(n, 9)) - 1
         var prevblockx = blocks[ran][0]
@@ -60,10 +67,12 @@ var clearInterval = game.setInterval(function() {
         var prevblockz = blocks[ran][2]
         var nextblockx = prevblockx + Math.floor(Math.random() *3) - 1
         var nextblocky = prevblocky + parseInt(dy)
-        console.log(prevblocky)
         var nextblockz = prevblockz + Math.floor(Math.random() *3) - 1
         blocks.push([nextblockx, nextblocky, nextblockz])
-        game.setBlock(blocks[count + 1], 2)
+        blocks.forEach(function(entry){
+            game.setBlock(entry, 2)
+        })
+        // game.setBlock(blocks[count + 1], 2)
         count++
     }
 }, 1000)
