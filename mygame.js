@@ -22,8 +22,8 @@ var clearInterval = game.setInterval(function() {
     y++
     var dy = deck.pick({
         '-1' : 1,
-        0 : 3,
-        1 : 4, 
+        0 : 4,
+        1 : 2, 
     })
     blocks.forEach(function(entry){
         game.setBlock(entry, 0)
@@ -48,6 +48,14 @@ var clearInterval = game.setInterval(function() {
 }, 1000)
 
 
+window.addEventListener("keydown", pausetree, false);
+
+function pausetree(p) {
+        if (p.keyCode == "80") {
+                console.log("eXistenZ IS PAUSED!");
+                clearInterval()          
+        }
+}
 
 window.game = game
 var snow = require('voxel-snow')({
