@@ -1,5 +1,6 @@
 var createGame = require('voxel-hello-world')
 var texturePath = require('programmerart-textures')('');
+var deck = require('deck')
 var game = createGame({
     generate: function(x, y, z) {
       return y === 1 ? 1 : 0
@@ -12,28 +13,14 @@ var game = createGame({
     texturePath: texturePath,
     materialFlatColor: false,
 })
-var deck = require('deck')
-var count = 0
-var blocks = [[3, 3, 3]]
-var y = 2   
-
-var clearInterval = game.setInterval(function() {
-    game.setBlock([3, y, 3], 3) 
-    y++
+function bunch () {
+    var n = blocks.length 
+    var ran = n - Math.floor(Math.random() * Math.min(n, 9)) - 1
     var dy = deck.pick({
         '-1' : 1,
         0 : 4,
         1 : 2, 
     })
-    blocks.forEach(function(entry){
-        game.setBlock(entry, 0)
-
-    })
-    blocks.forEach(function(entry){
-        entry[1]++
-    })
-    var n = blocks.length 
-    var ran = n - Math.floor(Math.random() * Math.min(n, 9)) - 1
     var prevblockx = blocks[ran][0]
     var prevblocky = blocks[ran][1]
     var prevblockz = blocks[ran][2]
@@ -45,6 +32,35 @@ var clearInterval = game.setInterval(function() {
         game.setBlock(entry, 2)
     })
     count++
+}
+
+function trunk () {
+    game.setBlock([3, y, 3], 3) 
+    y++
+}
+function up () {
+    blocks.forEach(function(entry){
+        game.setBlock(entry, 0)
+
+    })
+    blocks.forEach(function(entry){
+        entry[1]++
+    })
+}
+var count = 0
+var blocks = [[3, 3, 3]]
+var y = 2   
+
+var clearInterval = game.setInterval(function() {
+
+
+//increasing trunk
+    trunk()
+//up
+    up()
+
+//bunch
+    bunch()
 }, 1000)
 
 
