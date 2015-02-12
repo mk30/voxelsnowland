@@ -13,6 +13,7 @@ var game = createGame({
     texturePath: texturePath,
     materialFlatColor: false,
 })
+var blocks = [[3, 3, 3]]
 function bunch () {
     var n = blocks.length 
     var ran = n - Math.floor(Math.random() * Math.min(n, 9)) - 1
@@ -48,18 +49,17 @@ function up () {
     })
 }
 var count = 0
-var blocks = [[3, 3, 3]]
 var y = 2   
 
 var clearInterval = game.setInterval(function() {
-
-
-//increasing trunk
-    trunk()
-//up
-    up()
-
-//bunch
+    if (count % 5 == 0 && count <= 25){
+        trunk()
+        up()
+    }
+    else if (count % 40 == 0 && count >= 25){
+        trunk()
+        up()
+    }
     bunch()
 }, 1000)
 
