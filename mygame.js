@@ -13,7 +13,11 @@ var game = createGame({
     texturePath: texturePath,
     materialFlatColor: false,
 })
-var blocks = [[3, 3, 3]]
+var Tree = require('./treemodule.js')
+
+var tree = Tree(game)
+
+
 function bunch () {
     var n = blocks.length 
     var ran = n - Math.floor(Math.random() * Math.min(n, 9)) - 1
@@ -35,32 +39,20 @@ function bunch () {
     count++
 }
 
-function trunk () {
-    game.setBlock([3, y, 3], 3) 
-    y++
-}
-function up () {
-    blocks.forEach(function(entry){
-        game.setBlock(entry, 0)
-
-    })
-    blocks.forEach(function(entry){
-        entry[1]++
-    })
-}
 var count = 0
-var y = 2   
 
 var clearInterval = game.setInterval(function() {
+/*
     if (count % 5 == 0 && count <= 25){
-        trunk()
-        up()
+        tree.grow
     }
     else if (count % 40 == 0 && count >= 25){
-        trunk()
-        up()
+        tree.grow
     }
+
     bunch()
+*/
+    tree.grow()
 }, 1000)
 
 
