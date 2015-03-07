@@ -1,6 +1,5 @@
 var createGame = require('voxel-hello-world')
 var texturePath = require('programmerart-textures')('');
-var deck = require('deck')
 var game = createGame({
     generate: function(x, y, z) {
       return y === 1 ? 1 : 0
@@ -16,42 +15,9 @@ var game = createGame({
 var Tree = require('./treemodule.js')
 
 var tree = Tree(game)
-
-
-function bunch () {
-    var n = blocks.length 
-    var ran = n - Math.floor(Math.random() * Math.min(n, 9)) - 1
-    var dy = deck.pick({
-        '-1' : 1,
-        0 : 4,
-        1 : 2, 
-    })
-    var prevblockx = blocks[ran][0]
-    var prevblocky = blocks[ran][1]
-    var prevblockz = blocks[ran][2]
-    var nextblockx = prevblockx + Math.floor(Math.random() *3) - 1
-    var nextblocky = prevblocky + parseInt(dy)
-    var nextblockz = prevblockz + Math.floor(Math.random() *3) - 1
-    blocks.push([nextblockx, nextblocky, nextblockz])
-    blocks.forEach(function(entry){
-        game.setBlock(entry, 2)
-    })
-    count++
-}
-
 var count = 0
 
 var clearInterval = game.setInterval(function() {
-/*
-    if (count % 5 == 0 && count <= 25){
-        tree.grow
-    }
-    else if (count % 40 == 0 && count >= 25){
-        tree.grow
-    }
-
-    bunch()
-*/
     tree.grow()
 }, 1000)
 
@@ -64,7 +30,6 @@ function pausetree(p) {
                 clearInterval()          
         }
 }
-
 window.game = game
 var snow = require('voxel-snow')({
   game: game,
